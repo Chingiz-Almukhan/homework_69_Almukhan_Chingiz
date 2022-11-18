@@ -24,40 +24,28 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-
-    function sum(value) {
+    function sum() {
         $.ajax({
-            url: value + '/',
+            url: `${this.id}/`,
             type: "POST",
             data: JSON.stringify({
                 "A": $('#first').val(),
                 "B": $('#second').val(),
             }),
             success: function (data) {
-                $('#result').html(data.result)
+                $('#result').html(data.result);
+                $('#result').css('background-color', 'green');
             },
             error: function (data) {
-                $('#result').html(data.responseJSON.error)
+                $('#result').html(data.responseJSON.error);
+                $('#result').css('background-color', 'red');
             }
         });
     }
-    $("#add").click(function () {
-        const url = 'add';
-        sum(url)
-    });
-    $("#subtract").click(function () {
-        const url = 'subtract';
-        sum(url)
-    });
-    $("#multiply").click(function () {
-        const url = 'multiply';
-        sum(url)
-    });
-    $("#divide").click(function () {
-        const url = 'divide';
-        sum(url)
-    });
+    $("#add").click(sum);
+    $("#subtract").click(sum);
+    $("#multiply").click(sum);
+    $("#divide").click(sum);
 </script>
 </body>
 </html>
